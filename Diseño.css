@@ -1,0 +1,21 @@
+body{
+    background-color: #C5B2E2;
+}
+
+header{
+    padding-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0px 2em;
+}
+main{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+section{
+    width: auto;
+    height: 100px;
+    border: 1px solid red;
+}

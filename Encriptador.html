@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,65 @@
     <link rel="stylesheet" href="reset.css/reset.css">
     <link rel="stylesheet" href="Diseño.css">
 </head>
+
 <body>
-    
+    <header>
+        <div id="logo">
+            <img src="svg/Logo.svg">
+        </div>
+
+        <div id="theme">
+            <!--TO DO 
+                botones para tema claro y oscuro
+                pueden pasar de ser botones a iconos clickeables
+            -->
+            <button> Oscuro</button>
+            <button> Claro</button>
+        </div>
+
+    </header>
+    <main>
+        <section id="crypt" class="textarea">
+            <div>
+                <div id="textIn">
+                    <!--TO DO textarea para el usuario-->
+                </div>
+
+                <div id="textoAdvertencia">
+                    <!--TO DO texto advirtiendo cómo ingresar el mensaje-->
+                </div>
+
+                <div id="buttons">
+                    <!--TO DO botones para cambiar entre encriptar y
+                        desencriptar 
+                    -->
+                </div>
+            </div>
+        </section>
+
+        <section id="decrypt" class="textarea">
+            <div>
+                <div id="mostrarError">
+                    <!--TO DO Panel de texto para indicar
+                        error de entrada, avisar que se copio el texto 
+                        y posiblemente sobre el estado del encriptador
+                        (modo encriptar/desencriptar)
+                    -->
+                </div>
+
+                <div id="textOut">
+                    <!--TO DO texto encriptado resultado-->
+                </div>
+
+                <div id="botonCopiar">
+                    <!--TO DO boton para copiar-->
+                </div>
+                
+            </div>
+
+        </section>
+    </main>
     <script src="cryptLogic.js"></script>
 </body>
+
 </html>
