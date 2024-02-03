@@ -16,56 +16,48 @@
         </div>
 
         <div id="theme">
-            <!--TO DO 
-                botones para tema claro y oscuro
-                pueden pasar de ser botones a iconos clickeables
-            -->
-            <button> Oscuro</button>
-            <button> Claro</button>
+            <button id="light" class="theme"> Oscuro </button>
+            <button id="dark" class="theme"> Claro </button>
         </div>
 
     </header>
     <main>
-        <section id="crypt" class="textarea">
-            <div>
-                <div id="textIn">
-                    <!--TO DO textarea para el usuario-->
+        <section>
+            <div id="crypt" class="textarea">         
+                <div id="buttons"> 
+                    <button id="crypting" class="cryptLogic">Encriptar</button>
+                    <button id="decrypting" class="cryptLogic">Desencriptar</button>                 
+                </div>
+
+                <div id="textIn">  
+                    <textarea id="textToCrypt" placeholder="Introduzca su texto aquí..." required></textarea>               
                 </div>
 
                 <div id="textoAdvertencia">
-                    <!--TO DO texto advirtiendo cómo ingresar el mensaje-->
-                </div>
-
-                <div id="buttons">
-                    <!--TO DO botones para cambiar entre encriptar y
-                        desencriptar 
-                    -->
+                    <p id="info">No se admiten carácteres especiales ni mayúsculas.</p>                 
                 </div>
             </div>
         </section>
 
-        <section id="decrypt" class="textarea">
-            <div>
-                <div id="mostrarError">
-                    <!--TO DO Panel de texto para indicar
-                        error de entrada, avisar que se copio el texto 
-                        y posiblemente sobre el estado del encriptador
-                        (modo encriptar/desencriptar)
-                    -->
+        <section>
+            <div id="decrypt" class="textarea">
+                <div id="mostrarError">  
+                    <p id="error">Error: Carácter especial o mayúscula detectado, se ha omitido/reemplazado (copiado)</p>               
                 </div>
 
-                <div id="textOut">
-                    <!--TO DO texto encriptado resultado-->
+                <div id="textOut"> 
+                    <p id="resultado">Mensaje no encontrado</p>                 
                 </div>
 
-                <div id="botonCopiar">
-                    <!--TO DO boton para copiar-->
+                <div id="botonCopiar"> 
+                    <button id="copy">Copiar</button>                   
                 </div>
                 
             </div>
 
         </section>
     </main>
+    
     <script src="cryptLogic.js"></script>
 </body>
 
