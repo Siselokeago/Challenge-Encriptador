@@ -1,7 +1,18 @@
+:root{
+    --color-first: #e5c5ff;
+    --color-second-light: #b383e9;
+    --color-second-dark: #4a2772;
+    --color-third: #976bc9;
+    --color-fourth: #e2d7e9;
+    --color-fifth: #b028ff;
+
+}
 body{
-    background-color: #C5B2E2;
-    padding: 40px 80px;
+    background-color: var(--color-first);
+    padding: 3dvh 80px;
     padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 header{
@@ -10,19 +21,28 @@ header{
     justify-content: space-between;
 }
 main{
+    align-self: center;
+    width: 75vw;
     display: grid;
     grid-template-columns: 60% auto;
-    grid-template-rows: 85vh;
-    justify-content: space-around;
-    padding: 20px;
+    grid-template-rows: 80dvh;
+    justify-content: space-between;
+    margin: 15px;
+    padding: 15px;
+    background-color: var(--color-second-light);
+    border-radius: 15px; 
+    
 }
-
-section{
-    border: 1px solid red;
+p{
+    color: var(--color-fourth);
+}
+#logo{
+    fill: var(--color-third);
 }
 /* Inicio estilo switch crypt/decrypt */
 .switch{
     display: flex;
+    align-items: center;
 }
 #switch{
     align-self: flex-start;
@@ -36,7 +56,7 @@ section{
     align-items: center;
     width: 60px;
     height: 35px;
-    background-color: black;
+    background-color: var(--color-first);
     border-radius: 17px;
     cursor: pointer;
     padding: 5px;
@@ -44,40 +64,55 @@ section{
     transition: 0.2s;
     
 }
-.toggle::before{
-    content: '';
+.round{
     width: 25px;
     height: 25px;
-    background-color: white;
+    background-color: var(--color-third);
     border-radius: 50%;
     transition: 0.2s;
-    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.toggle:active .round{
+    flex-grow: .6;
 }
 input:checked + .toggle{
-    background: yellowgreen;
+    background: var(--color-third);
     display: flex;
     justify-content: end;
-    
 }
-.toggle:active:before{
-    flex-grow: .7;
+input:checked + .toggle > .round{
+    background: var(--color-first);
+}
+.svg{
+    align-self: center;
+}
+#moon{
+    display: initial;
+    fill: var(--color-third);
+}
+input:checked + .toggle > div > #moon{
+    display: none;
+}
+#sun{
+    display: none;
+}
+input:checked + .toggle > div > #sun{
+    display: initial;
 }
 #locked{
-    position: fixed;
-    justify-self: start;
-    
-}
-input:checked + .toggle > #locked{
     display: none;
+    fill: var(--color-third); 
+}
+input:checked + .toggle > div > #locked{
+    display: initial;
 }
 #unlocked{
-    display: none;
+    display: initial;
+    fill: var(--color-first);
 }
-input:checked + .toggle > #unlocked{
-    display: block;
-    position: fixed;
-    justify-self: start;
-    
+input:checked + .toggle > div > #unlocked{
+    display: none;
 }
 
 /* */
@@ -95,27 +130,39 @@ input:checked + .toggle > #unlocked{
     box-sizing: border-box;
     border: none;
     outline: none;
-    background: none;
+    background: var(--color-third);
+    border-radius: 20px;
     font-size: 25px;
     resize: none;
+    color: var(--color-fourth);
+}
+#textToCrypt::placeholder{
+    color: var(--color-fourth);
+}
+/* Fin*/
+/* Inicio estilo mensaje advertencia */
+#textoAdvertencia p{
+    font-size: 20px;
 }
 /* Fin*/
 /* Inicio estilo general de las areas de encriptado */
+
 .textarea{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    
 }
+
 /* Fin */
 /* Inicio estilo area de resultados */
 #decrypt{
-    background: #916fcc;
+    background: var(--color-third);
     border-radius: 15px;
-    max-width: 500px;
-    
+    max-width: 400px;
+    padding: 15px;
+    box-sizing: border-box;  
 }
 #copy{
     margin-bottom: 20px;
