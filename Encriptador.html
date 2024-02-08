@@ -52,7 +52,7 @@
                 <div class="switch" id="switch">
 
 
-                    <input type="checkbox" id="crypt-mode" checked>
+                    <input onclick="verifyMode()" type="checkbox" id="crypt-mode" checked>
                     <label for="crypt-mode" class="toggle">
                         <div class="round">
                             <svg class="svg" id="locked" fill="#000000" height="20px" width="19px" version="1.1" id="Layer_1"
@@ -73,7 +73,7 @@
 
 
                 <div id="textIn">
-                    <textarea id="textToCrypt" oninput="crypting();" placeholder="Introduzca su texto aquí..."></textarea>
+                    <textarea id="textToCrypt" oninput="startProcess();" placeholder="Introduzca su texto aquí..."></textarea>
                 </div>
 
                 <div id="textoAdvertencia">
