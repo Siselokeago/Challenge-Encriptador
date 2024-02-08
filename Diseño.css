@@ -3,8 +3,6 @@
     --color-logo: #e5c5ff;
     --color-second: #613897;
     --color-fourth: #c7a9ff;
-    --color-first: #d9abff93;
-    --color-third: #976bc950;
     --color-light-text: #ab8bda;
     --color-dark-text: #26134b;
     --color-light-area: #8756ca;
@@ -25,6 +23,7 @@ html:has(body):has(header):has(#theme-area):has(#theme:checked):root {
 
 body {
     background-color: var(--color-bg);
+    transition: background 0.2s;
     padding: 3dvh 80px;
     padding-bottom: 0;
     display: flex;
@@ -46,13 +45,15 @@ main {
     justify-content: space-between;
     margin: 15px;
     padding: 15px;
-    background-color: var(--color-second);
+    background: var(--color-second);
+    transition: background 0.2s;
     border-radius: 15px;
 
 }
 
 #logo {
     fill: var(--color-logo);
+    transition: fill 0.2s;
 }
 
 /* Inicio estilo switch crypt/decrypt */
@@ -115,6 +116,7 @@ input:checked+.toggle>.round {
 #moon {
     display: initial;
     fill: var(--color-light-area);
+    stroke: var(--color-light-area);
 }
 
 input:checked+.toggle>div>#moon {
@@ -127,6 +129,7 @@ input:checked+.toggle>div>#moon {
 
 input:checked+.toggle>div>#sun {
     display: initial;
+    stroke: var(--color-dark-area);
 }
 
 #locked {
@@ -149,6 +152,7 @@ input:checked+.toggle>div>#unlocked {
 
 section:has(.textarea):has(#switch):has(input:checked) {
     #crypt #textIn #textToCrypt {
+        transition: 0.2s;
         background-color: var(--color-dark-area);
         color: var(--color-light-text);
     }
@@ -156,8 +160,8 @@ section:has(.textarea):has(#switch):has(input:checked) {
     #textIn textarea::placeholder {
         color: var(--color-light-text);
     }
-
     ~section>#decrypt {
+        transition: 0.2s;
         background-color: var(--color-dark-area);
         #mostrarError{
             background-color: var(--color-light-area);
@@ -180,6 +184,48 @@ section:has(.textarea):has(#switch):has(input:checked) {
         }
     }
 }
+section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown){
+    ~section {
+        #mostrarError{
+            transition: .2s;
+            opacity: 0;
+            width: 0px;
+            height: 0px;
+            p{
+                display: none;
+            }
+        }
+        #containerMessage{
+            gap: 15px;
+            transition: .2;
+        }
+        #notFound{
+            margin-top: 100px;
+            height: 200px;
+            opacity: 100;
+            transition: .7s;  
+        }
+        #decoracion, #container-notFound{
+            display: flex;
+            align-items: start;
+            height: 100%;
+            transition: 1s;
+        }
+        #copy{
+            width: 0;
+            height: 0;
+            transition: .5s;
+            opacity: 0;
+            #buttonSvg{
+                width: 0px;
+                height: 0px;
+                transition: .5s;
+            }
+        }
+        
+    }
+
+}
 
 /* Fin */
 
@@ -190,6 +236,7 @@ section:has(.textarea):has(#switch):has(input:checked) {
 }
 
 #textToCrypt {
+    transition: 0.2s;
     width: 100%;
     height: 100%;
     padding: 15px;
@@ -204,6 +251,7 @@ section:has(.textarea):has(#switch):has(input:checked) {
 }
 
 #textToCrypt::placeholder {
+    transition: 0.2s;
     color: var(--color-dark-text);
 }
 
@@ -228,44 +276,63 @@ section:has(.textarea):has(#switch):has(input:checked) {
 /* Fin */
 /* Inicio estilo area de resultados */
 #decrypt {
+    transition: 0.2s;
+    justify-content: space-between;
+    width: 30vw;
     background: var(--color-light-area);
     border-radius: 15px;
     max-width: 400px;
     padding: 15px;
     box-sizing: border-box;
-
     p {
         color: var(--color-dark-text);
     }
-
     #textOut {
         font-size: 20px;
     }
 }
 #mostrarError{
+    width: 95%;
+    height: 30px;
+    transition: .5s;
     padding: 10px;
     border-radius: 15px;
     background: var(--color-dark-area);
     p{
+        display: initial;
         color: var(--color-light-text);
     }
 }
 
 #containerMessage {
+    width: 90%;
+    margin-top: 20px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-
-    #notFound {
+    justify-content: flex-start;
+    gap: 0px;
+    #notFound{    
+        margin-top: 0px;
+        height: 0;
+        opacity: 0;
+        transition: .5s;
         fill: var(--color-dark-area);
     }
+    #decoracion, #container-notFound{
+        height: 0;
+        transition: .5s;
+    }
+    
+
 }
 
 #botonCopiar {
     align-self: flex-start;
     display: flex;
     #copy {
+        justify-self: flex-end;
         width: 40px;
         height: 40px;
         background-color: var(--color-dark-area);
@@ -276,9 +343,15 @@ section:has(.textarea):has(#switch):has(input:checked) {
         text-align: center;
         text-decoration: none;
         font-size: 16px;
+        transition: 0.5s;
+        #buttonSvg{
+            width: 30px;
+            height: 30px;
+            transition: 0.5s;
+        }
     }
     #copy:active{
-        background-color: ;
+        background-color: yellow;
     }
 }
 
