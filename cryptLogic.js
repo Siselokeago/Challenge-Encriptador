@@ -1,4 +1,6 @@
 var lock = true;
+var specialChar = false;
+var capLet = false;
 function getText(){ 
     return document.getElementById("textToCrypt").value;
 }
@@ -12,27 +14,39 @@ function startProcess(){
     else{
         clearText();
         document.getElementById("result").innerHTML ="Mensaje no encontrado";
+        document.getElementById("error").innerHTML = "";
     }
     /* Verificar cuando se borra un caracter */
 }
 function setText(string){
     if (lock) {
-        document.getElementById("result").innerHTML = string.replaceAll("e","enter")
-                                                        .replaceAll("i","imes")
-                                                        .replaceAll("a","ai")
-                                                        .replaceAll("o","ober")
-                                                        .replaceAll("u","ufat");
+        document.getElementById("result").innerHTML = cleanText(string).replace(/e/g,"enter")
+                                                        .replace(/i/g,"imes")
+                                                        .replace(/a/g,"ai")
+                                                        .replace(/o/g,"ober")
+                                                        .replace(/u/g,"ufat");
     }
     else{
-        document.getElementById("result").innerHTML = string.replaceAll("imes","i")
-                                                        .replaceAll("enter","e")
-                                                        .replaceAll("ai","a")
-                                                        .replaceAll("ober","o")
-                                                        .replaceAll("ufat","u");
+        document.getElementById("result").innerHTML = cleanText(string).replaceAll(/imes/g,"i")
+                                                        .replaceAll(/enter/g,"e")
+                                                        .replaceAll(/ai/g,"a")
+                                                        .replaceAll(/ober/g,"o")
+                                                        .replaceAll(/ufat/g,"u");
     }
     
-    
-    
+}
+function cleanText(str){
+    var stringClean = str
+    .replace(/[^A-Za-z0-9 .,]/g, function(match){
+        specialChar = true;
+        return '';
+    })
+    .replace(/[A-Z]/g, function(match){
+        capLet = true;
+        return match.toLowerCase();
+    });
+    showError();
+    return stringClean;
 }
 function verifyMode(){
 
@@ -42,6 +56,28 @@ function verifyMode(){
 }
 function clearText(){
     document.getElementById("result").innerHTML = "";
+}
+function copyResult(){
+    navigator.clipboard.writeText(document.getElementById("result").innerHTML)
+}
+function showError(){
+    if(!specialChar && !capLet){
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("hideError").checked = false;
+
+    }else if(specialChar && capLet){
+        document.getElementById("error").innerHTML = "Error: Mayúsculas y carácteres especiales detectados y corregidos.";
+        document.getElementById("hideError").checked = true;
+    }else if(specialChar){
+        document.getElementById("error").innerHTML = "Error: Carácteres especiales detectados y corregidos.";
+        document.getElementById("hideError").checked = true;
+    }else{
+        document.getElementById("error").innerHTML = "Error: Mayúsculas detectadas y corregidas.";
+        document.getElementById("hideError").checked = true;
+    }
+    
+    capLet= false;
+    specialChar = false;
 }
 
 

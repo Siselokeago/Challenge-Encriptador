@@ -46,14 +46,14 @@ main {
     margin: 15px;
     padding: 15px;
     background: var(--color-second);
-    transition: background 0.2s;
+    transition: background .2s;
     border-radius: 15px;
 
 }
 
 #logo {
     fill: var(--color-logo);
-    transition: fill 0.2s;
+    transition: fill .2s;
 }
 
 /* Inicio estilo switch crypt/decrypt */
@@ -160,16 +160,19 @@ section:has(.textarea):has(#switch):has(input:checked) {
     #textIn textarea::placeholder {
         color: var(--color-light-text);
     }
+
     ~section>#decrypt {
-        transition: 0.2s;
+        transition: background 0.2s;
         background-color: var(--color-dark-area);
-        #mostrarError{
-            background-color: var(--color-light-area);
-            p{
+
+        #mostrarError {
+            background-color: var(--color-light-area);     
+            p {
                 color: var(--color-dark-text);
             }
         }
-        p {
+
+        #result {
             color: var(--color-light-text);
         }
 
@@ -178,49 +181,64 @@ section:has(.textarea):has(#switch):has(input:checked) {
         }
 
         #copy {
+            transition: 0.5s;
             background-color: var(--color-light-area);
-            color: var(--color-dark-text);
-            stroke: var(--color-dark-text);
+            #buttonSvg{
+                stroke: var(--color-dark-text);
+            }
+            
+        }
+        #copy:hover {
+            scale: 1.1;
+            box-shadow: -2px 5px 10px 2px black;
+
+            transition: 0.5s;
+            #buttonSvg{
+                stroke: white;
+                transition: 0.5s;
+            }
+        }
+        
+        #checkMark{
+            stroke: var(--color-dark-area);
         }
     }
 }
-section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown){
+
+section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown) {
     ~section {
-        #mostrarError{
-            transition: .2s;
-            opacity: 0;
-            width: 0px;
-            height: 0px;
-            p{
-                display: none;
-            }
-        }
-        #containerMessage{
+        
+
+        #containerMessage {
             gap: 15px;
             transition: .2;
         }
-        #notFound{
+
+        #notFound {
             margin-top: 100px;
             height: 200px;
             opacity: 100;
-            transition: .7s;  
+            transition: .7s;
         }
-        #decoracion, #container-notFound{
+
+        #decoracion,
+        #container-notFound {
             display: flex;
             align-items: start;
             height: 100%;
             transition: 1s;
         }
-        #copy{
+
+        #copy {
             width: 0;
             height: 0;
             transition: .5s;
             opacity: 0;
-            #buttonSvg{
+            #buttonSvg {
                 width: 0px;
                 height: 0px;
-                transition: .5s;
-            }
+                transition: width .5s height .5s;   
+            }            
         }
         
     }
@@ -281,85 +299,139 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown){
     width: 30vw;
     background: var(--color-light-area);
     border-radius: 15px;
-    max-width: 400px;
+    max-width: 500px;
     padding: 15px;
     box-sizing: border-box;
+
     #textOut {
         display: flex;
         font-size: 20px;
         width: 100%;
         justify-content: center;
-        #result{
+        height: 100%;
+        #result {
+            box-sizing: border-box;
             overflow: auto;
             word-wrap: break-word;
+            color: var(--color-dark-text);
+            font-size: 25px;
         }
-        #result::-webkit-scrollbar{
+
+        #result::-webkit-scrollbar {
             display: none;
         }
     }
 }
-#mostrarError{
+#mostrarError:has(#hideError:checked){
     width: 95%;
-    height: 30px;
+    min-height: 35px;
     transition: .5s;
     padding: 10px;
     border-radius: 15px;
     background: var(--color-dark-area);
-    p{
+    box-shadow: -2px 5px 10px 2px black;
+    overflow: hidden;
+    p {
+        font-size: 18px;
+        font-weight: bold;
         display: initial;
+        color: var(--color-light-text);
+    }
+}
+#mostrarError {
+    width: 0;
+    height: 0px;
+    transition: .5s;
+    padding: 0;
+    border-radius: 0;
+    background: var(--color-dark-area);
+    box-shadow: -2px 5px 10px 2px black;
+    p {
+        font-size: 0;
+        font-weight: bold;
+        display: none;
         color: var(--color-light-text);
     }
 }
 
 #containerMessage {
+    height: 65dvh;
     width: 90%;
     margin-top: 20px;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     gap: 0px;
-    
-    #notFound{    
+
+    #notFound {
         margin-top: 0px;
         height: 0;
         opacity: 0;
         transition: .5s;
         fill: var(--color-dark-area);
     }
-    #decoracion, #container-notFound{
+
+    #decoracion,
+    #container-notFound {
         height: 0;
         transition: .5s;
     }
-    
+
 
 }
 
 #botonCopiar {
     align-self: flex-start;
     display: flex;
+    align-items: flex-end;
+    width: 40px;
+    height: 40px;
     #copy {
         justify-self: flex-end;
         width: 40px;
         height: 40px;
-        background-color: var(--color-dark-area);
         border-radius: 50%;
         border: none;
-        color: var(--color-light-text);
-        stroke: var(--color-light-text);
-        text-align: center;
+        background-color: var(--color-dark-area);
+        stroke: var(--color-light-area);
         text-decoration: none;
-        font-size: 16px;
         transition: 0.5s;
-        #buttonSvg{
+        display: flex;
+        place-content: center;
+
+        #buttonSvg {
             width: 30px;
             height: 30px;
             transition: 0.5s;
         }
+        #checkMark{
+            position: absolute;
+            width: 0px;
+            height: 0px;
+        }
     }
-    #copy:active{
-        background-color: yellow;
+    #copy:hover {
+        scale: 1.1;
+        box-shadow: -2px 5px 10px 2px black;
+        
+        transition: 0.2s;
+        #buttonSvg{
+            stroke: white;
+            transition: 0.5s;
+        }
+    }
+    
+
+    #copy:active {
+        box-shadow: none;
+        transition: 0s;
+        #buttonSvg {
+            animation-name: scale;
+            animation-delay: 0ms;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
     }
 }
 
