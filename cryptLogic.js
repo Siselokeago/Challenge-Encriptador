@@ -15,6 +15,7 @@ function startProcess(){
         clearText();
         document.getElementById("result").innerHTML ="Mensaje no encontrado";
         document.getElementById("error").innerHTML = "";
+        document.getElementById("hideError").checked = false;
     }
     /* Verificar cuando se borra un caracter */
 }
@@ -27,11 +28,11 @@ function setText(string){
                                                         .replace(/u/g,"ufat");
     }
     else{
-        document.getElementById("result").innerHTML = cleanText(string).replaceAll(/imes/g,"i")
-                                                        .replaceAll(/enter/g,"e")
-                                                        .replaceAll(/ai/g,"a")
-                                                        .replaceAll(/ober/g,"o")
-                                                        .replaceAll(/ufat/g,"u");
+        document.getElementById("result").innerHTML = cleanText(string).replace(/imes/g,"i")
+                                                        .replace(/enter/g,"e")
+                                                        .replace(/ai/g,"a")
+                                                        .replace(/ober/g,"o")
+                                                        .replace(/ufat/g,"u");
     }
     
 }
@@ -56,6 +57,7 @@ function verifyMode(){
 }
 function clearText(){
     document.getElementById("result").innerHTML = "";
+
 }
 function copyResult(){
     navigator.clipboard.writeText(document.getElementById("result").innerHTML)

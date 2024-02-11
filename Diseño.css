@@ -276,6 +276,7 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown) {
 /* Fin*/
 /* Inicio estilo mensaje advertencia */
 #textoAdvertencia p {
+    margin: 10px;   
     color: var(--color-light-text);
     font-size: 20px;
 }
@@ -325,7 +326,7 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown) {
 #mostrarError:has(#hideError:checked){
     width: 95%;
     min-height: 35px;
-    transition: .5s;
+    transition: .2s;
     padding: 10px;
     border-radius: 15px;
     background: var(--color-dark-area);
@@ -436,3 +437,26 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown) {
 }
 
 /* Fin */
+@media (max-width: 900px) {
+    main {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 100%;
+        box-sizing: border-box;
+    
+    }
+    #crypt #textIn #textToCrypt{
+        height: 20dvh;
+    }
+    #decrypt {
+        display: flex;
+        min-width: 100%;
+        height: 45dvh;
+        #containerMessage{
+            box-sizing: border-box;
+        }
+    }
+    #mostrarError:has(#hideError:checked) p {
+        font-size: 14px;
+    }
+}
