@@ -21,18 +21,18 @@ function startProcess(){
 }
 function setText(string){
     if (lock) {
-        document.getElementById("result").innerHTML = cleanText(string).replace(/e/g,"enter")
-                                                        .replace(/i/g,"imes")
-                                                        .replace(/a/g,"ai")
-                                                        .replace(/o/g,"ober")
-                                                        .replace(/u/g,"ufat");
+        document.getElementById("result").innerHTML = cleanText(string).replaceAll("e","enter")
+                                                        .replaceAll("i","imes")
+                                                        .replaceAll("a","ai")
+                                                        .replaceAll("o","ober")
+                                                        .replaceAll("u","ufat");
     }
     else{
-        document.getElementById("result").innerHTML = cleanText(string).replace(/imes/g,"i")
-                                                        .replace(/enter/g,"e")
-                                                        .replace(/ai/g,"a")
-                                                        .replace(/ober/g,"o")
-                                                        .replace(/ufat/g,"u");
+        document.getElementById("result").innerHTML = cleanText(string).replaceAll("imes","i")
+                                                        .replaceAll("enter","e")
+                                                        .replaceAll("ai","a")
+                                                        .replaceAll("ober","o")
+                                                        .replaceAll("ufat","u");
     }
     
 }
@@ -50,7 +50,6 @@ function cleanText(str){
     return stringClean;
 }
 function verifyMode(){
-
     document.getElementById("textToCrypt").value = "";
     document.getElementById("result").innerHTML ="Mensaje no encontrado";
     return lock = !lock;
