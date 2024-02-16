@@ -1,84 +1,56 @@
 var lock = true;
-var specialChar = false;
-var capLet = false;
-function getText(){ 
-    return document.getElementById("textToCrypt").value;
-}
+var notValid = false;
+var getText = document.getElementById("textToCrypt");
+var placeText = document.getElementById("result")
 function startProcess(){
-    if(getText().length === 1){
-        clearText();
-    }
-    if (getText() != ""){
-        setText(getText());
+    if(getText.value === ""){
+        placeText.innerHTML ="Mensaje no encontrado";
+        validate();
     }
     else{
-        clearText();
-        document.getElementById("result").innerHTML ="Mensaje no encontrado";
-        document.getElementById("error").innerHTML = "";
-        document.getElementById("hideError").checked = false;
+        setText(getText.value);
     }
-    /* Verificar cuando se borra un caracter */
 }
 function setText(string){
     if (lock) {
-        document.getElementById("result").innerHTML = cleanText(string).replaceAll("e","enter")
-                                                        .replaceAll("i","imes")
-                                                        .replaceAll("a","ai")
-                                                        .replaceAll("o","ober")
-                                                        .replaceAll("u","ufat");
+        placeText.innerHTML = cleanText(string).replaceAll("e","enter")
+                                                .replaceAll("i","imes")
+                                                .replaceAll("a","ai")
+                                                .replaceAll("o","ober")
+                                                .replaceAll("u","ufat");
     }
     else{
-        document.getElementById("result").innerHTML = cleanText(string).replaceAll("imes","i")
-                                                        .replaceAll("enter","e")
-                                                        .replaceAll("ai","a")
-                                                        .replaceAll("ober","o")
-                                                        .replaceAll("ufat","u");
+        placeText.innerHTML = cleanText(string).replaceAll("imes","i")
+                                                .replaceAll("enter","e")
+                                                .replaceAll("ai","a")
+                                                .replaceAll("ober","o")
+                                                .replaceAll("ufat","u");
     }
     
 }
 function cleanText(str){
     var stringClean = str
-    .replace(/[^A-Za-z0-9 .,]/g, function(match){
-        specialChar = true;
+    .replace(/[^A-Za-z0-9 .,\u00f1]/g, function(match){
+        notValid = true;
         return '';
     })
     .replace(/[A-Z]/g, function(match){
-        capLet = true;
+        notValid = true;
         return match.toLowerCase();
     });
-    showError();
+    validate();
     return stringClean;
 }
-function verifyMode(){
-    document.getElementById("textToCrypt").value = "";
-    document.getElementById("result").innerHTML ="Mensaje no encontrado";
+function switchMode(){
+    getText.value = "";
+    placeText.innerHTML ="Mensaje no encontrado";
     return lock = !lock;
 }
-function clearText(){
-    document.getElementById("result").innerHTML = "";
-
-}
 function copyResult(){
-    navigator.clipboard.writeText(document.getElementById("result").innerHTML)
+    navigator.clipboard.writeText(placeText.innerHTML)
 }
-function showError(){
-    if(!specialChar && !capLet){
-        document.getElementById("error").innerHTML = "";
-        document.getElementById("hideError").checked = false;
-
-    }else if(specialChar && capLet){
-        document.getElementById("error").innerHTML = "Error: Mayúsculas y carácteres especiales detectados y corregidos.";
-        document.getElementById("hideError").checked = true;
-    }else if(specialChar){
-        document.getElementById("error").innerHTML = "Error: Carácteres especiales detectados y corregidos.";
-        document.getElementById("hideError").checked = true;
-    }else{
-        document.getElementById("error").innerHTML = "Error: Mayúsculas detectadas y corregidas.";
-        document.getElementById("hideError").checked = true;
-    }
-    
-    capLet= false;
-    specialChar = false;
+function validate(){
+    document.getElementById("error").innerHTML = notValid === false ? "":"Error: Mayúsculas y/o carácteres especiales detectados y corregidos";
+    document.getElementById("hideError").checked = notValid;
+    notValid = false;
 }
-
-
