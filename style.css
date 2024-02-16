@@ -310,8 +310,6 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown)~section 
         display: flex;
         width: 100%;
         justify-content: center;
-        overflow: auto;
-
         #result {
 
             word-break: break-all;
@@ -452,9 +450,6 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown)~section 
         grid-template-rows: 35dvh 45dvh;
         grid-template-columns: 100%;
         box-sizing: border-box;
-    }
-    #textOut{
-        height: 100%;
     }
 
    
