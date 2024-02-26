@@ -32,7 +32,6 @@ body {
 
 header {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -54,6 +53,71 @@ main {
 #logo {
     fill: var(--color-logo);
     transition: fill .2s;
+}
+#logo-area{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5dvw;
+    .contains-verticalSwitch{
+        .toggle{
+            display: flex;
+            flex-direction: column;
+            height: 48px;
+            width: 50px;
+            border-radius: 30%;
+            background-color: transparent;
+            padding: 0;
+        }
+        .round{
+            width: 40px;
+            height: 25px;
+            border-radius: 30%;
+            align-items: center;
+            background-color: var(--color-dark-area);
+        }
+        .lang-text{
+            font-weight: bold;
+            color: var(--color-light-text);
+        }
+        #EN-lang{
+            display: initial;     
+        }
+        #ES-lang{
+            display: none;
+        }
+        #lang:checked ~ .toggle{
+    
+            #EN-lang{
+                display: none;
+            }
+            #ES-lang{
+                display: initial;
+            }
+        }
+    }
+    #designText-area{
+        width: 20dvw;
+        height: 48px;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .design-text{
+            font-weight: bold;
+            color: var(--color-dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 38px;
+            border-radius: 12px;
+            width: 9dvw;
+            min-width: 100px;
+        }
+        #currentDesign{
+            background-color: var(--color-dark-area);
+            color: var(--color-light-text);
+        }
+    }
 }
 
 /* Inicio estilo switch crypt/decrypt */
@@ -81,8 +145,6 @@ main {
     cursor: pointer;
     padding: 5px;
     box-sizing: border-box;
-    transition: 0.2s;
-
 }
 
 .round {
@@ -96,17 +158,33 @@ main {
 }
 
 .toggle:active .round {
-    flex-grow: .6;
+    flex-grow: .4;
 }
 
-input:checked+.toggle {
+input:checked + .toggle {
     background: var(--color-dark-area);
-    display: flex;
     justify-content: end;
-}
 
-input:checked+.toggle>.round {
-    background: var(--color-light-area);
+    .round {
+        background: var(--color-light-area);
+    }
+
+    #moon {
+        display: none;
+    }
+
+    #sun {
+        display: initial;
+        stroke: var(--color-dark-area);
+    }
+
+    #locked {
+        display: initial;
+    }
+
+    #unlocked {
+        display: none;
+    }
 }
 
 .svg {
@@ -119,17 +197,8 @@ input:checked+.toggle>.round {
     stroke: var(--color-light-area);
 }
 
-input:checked+.toggle>div>#moon {
-    display: none;
-}
-
 #sun {
     display: none;
-}
-
-input:checked+.toggle>div>#sun {
-    display: initial;
-    stroke: var(--color-dark-area);
 }
 
 #locked {
@@ -137,17 +206,9 @@ input:checked+.toggle>div>#sun {
     fill: var(--color-dark-area);
 }
 
-input:checked+.toggle>div>#locked {
-    display: initial;
-}
-
 #unlocked {
     display: initial;
     fill: var(--color-light-area);
-}
-
-input:checked+.toggle>div>#unlocked {
-    display: none;
 }
 
 section:has(.textarea):has(#switch):has(input:checked) {
@@ -185,26 +246,20 @@ section:has(.textarea):has(#switch):has(input:checked) {
             transition: 0.5s;
             background-color: var(--color-light-area);
 
-            #buttonSvg {
+            svg {
                 stroke: var(--color-dark-text);
             }
 
         }
 
         #copy:hover {
-            scale: 1.1;
-            box-shadow: -2px 5px 10px 2px black;
-
+            scale: 1.2;
             transition: 0.5s;
 
-            #buttonSvg {
+            svg {
                 stroke: white;
                 transition: 0.5s;
             }
-        }
-
-        #checkMark {
-            stroke: var(--color-dark-area);
         }
     }
 }
@@ -310,6 +365,7 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown)~section 
         display: flex;
         width: 100%;
         justify-content: center;
+
         #result {
 
             word-break: break-all;
@@ -363,8 +419,8 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown)~section 
     gap: 0px;
     overflow: auto;
     margin-top: 0dvh;
-    transition:  .5s;
-   
+    transition: .5s;
+
 
     #notFound {
         margin-top: 0px;
@@ -392,53 +448,56 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown)~section 
     min-height: 40px;
 
     #copy {
-        justify-self: flex-end;
         width: 40px;
         height: 40px;
         border-radius: 50%;
         border: none;
         background-color: var(--color-dark-area);
-        stroke: var(--color-light-area);
-        text-decoration: none;
         transition: 0.5s;
         display: flex;
-        place-content: center;
+        align-items: center;
+        box-shadow: -2px 5px 10px 2px black;
+
+        svg {
+            position: absolute;
+            stroke: var(--color-light-text);
+        }
 
         #buttonSvg {
-            width: 30px;
-            height: 30px;
+            scale: 1;
             transition: 0.5s;
+
         }
 
         #checkMark {
-            position: absolute;
-            width: 0px;
-            height: 0px;
+            scale: 0;
+            transition: 0.5s;
         }
     }
 
     #copy:hover {
-        scale: 1.1;
-        box-shadow: -2px 5px 10px 2px black;
 
+        scale: 1.1;
         transition: 0.2s;
 
-        #buttonSvg {
+        svg {
             stroke: white;
             transition: 0.5s;
         }
     }
 
-
-    #copy:active {
+    #copy:focus {
         box-shadow: none;
-        transition: 0s;
+        transition: 0.2s;
 
         #buttonSvg {
-            animation-name: scale;
-            animation-delay: 0ms;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
+            scale: 0;
+            transition: 0.5s;
+        }
+
+        #checkMark {
+            scale: 1;
+            transition: 0.5s;
         }
     }
 }
@@ -452,5 +511,5 @@ section:has(.textarea):has(#textIn):has(#textToCrypt:placeholder-shown)~section 
         box-sizing: border-box;
     }
 
-   
+
 }
