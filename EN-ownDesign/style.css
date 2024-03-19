@@ -79,6 +79,9 @@ main {
             font-weight: bold;
             color: var(--color-light-text);
         }
+        #currentDesign{
+              
+        }
         #otherDesign{
             color: var(--color-dark-text);
             background: transparent;
@@ -116,7 +119,6 @@ main {
 }
 
 #switch {
-    padding-bottom: 10px;
     align-self: flex-start;
 }
 
